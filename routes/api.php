@@ -17,3 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('login','Api\Admin\LoginController@login');
+// Route::post('/register', 'RegisterController@register');
+// Route::post('/logout', 'LoginController@logout')->middleware('auth:api');
+
+Route::group(['prefix' => '', 'namespace' => 'Api\Admin'], function () {
+    // Route::get('/categories', 'CategoryController@index');
+    // Route::resource('categories', 'CategoryController')->except('create','show');
+    Route::resource('categories', 'CategoryController');
+});
